@@ -28,7 +28,6 @@ export default function ScrollVideo({
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [videoError, setVideoError] = useState(false);
-  const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
     if (!videoRef.current || !sectionRef.current) return;
@@ -79,7 +78,6 @@ export default function ScrollVideo({
 
     // Handle video loaded metadata
     const handleLoadedMetadata = () => {
-      setVideoLoaded(true);
       video.currentTime = 0;
       scrollTrigger.refresh();
     };
@@ -148,8 +146,8 @@ export default function ScrollVideo({
                 key={i}
                 className="absolute w-1 h-1 bg-white/30 rounded-full"
                 initial={{ 
-                  x: Math.random() * 1200, 
-                  y: Math.random() * 800,
+                  x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200), 
+                  y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
                   opacity: 0 
                 }}
                 animate={{ 

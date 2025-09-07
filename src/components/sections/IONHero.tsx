@@ -51,8 +51,8 @@ export default function IONHero({ className = '' }: IONHeroProps) {
             key={i}
             className="absolute text-white/10"
             initial={{ 
-              x: Math.random() * window.innerWidth, 
-              y: Math.random() * window.innerHeight,
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200), 
+              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
               opacity: 0,
               scale: 0
             }}

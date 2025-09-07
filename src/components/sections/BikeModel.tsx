@@ -28,9 +28,7 @@ export function Model({ scale = 1, position = [0, 0, 0], rotation = [0, 0, 0] }:
     color: '#c0c0c0',
     metalness: 1.0,
     roughness: 0.1,
-    envMapIntensity: 2.0,
-    clearcoat: 1.0,
-    clearcoatRoughness: 0.1
+    envMapIntensity: 2.0
   });
 
 

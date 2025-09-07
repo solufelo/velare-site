@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Zap, Shield, Star } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 interface HeroVideoProps {
   className?: string;
@@ -11,9 +11,7 @@ interface HeroVideoProps {
 
 export default function HeroVideo({ className = '' }: HeroVideoProps) {
   const [hasScrolled, setHasScrolled] = useState(false);
-  const [isInteracting, setIsInteracting] = useState(false);
   const [videoError, setVideoError] = useState(false);
-  const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,18 +19,10 @@ export default function HeroVideo({ className = '' }: HeroVideoProps) {
       setHasScrolled(scrollY > 50);
     };
 
-    const handleMouseMove = () => {
-      setIsInteracting(true);
-      // Reset interaction state after a delay
-      setTimeout(() => setIsInteracting(false), 3000);
-    };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
   return (
@@ -44,7 +34,7 @@ export default function HeroVideo({ className = '' }: HeroVideoProps) {
         muted 
         playsInline 
         className="absolute inset-0 w-full h-full object-cover"
-        onLoadedData={() => setVideoLoaded(true)}
+        onLoadedData={() => {}}
         onError={() => setVideoError(true)}
         style={{ display: videoError ? 'none' : 'block' }}
       />

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Navbar, Footer } from '@/components/sections';
-import { Check, Star, Shield, Zap, ArrowRight, Calendar, CreditCard, MapPin } from 'lucide-react';
+import { Check, Star, Shield, Calendar, CreditCard } from 'lucide-react';
 
 export default function ReservePage() {
   const [selectedPackage, setSelectedPackage] = useState('premium');

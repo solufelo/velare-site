@@ -29,6 +29,9 @@ export default function SliceTransition({
     offset: ["start end", "end start"]
   });
 
+  // Move useTransform outside the function
+  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
+
   // Clean, simple transition effects
   const getTransitionProps = () => {
     switch (transitionType) {
@@ -36,7 +39,7 @@ export default function SliceTransition({
         return {
           initial: { opacity: 0 },
           whileInView: { opacity: 1 },
-          transition: { duration: 0.8, ease: "easeOut" }
+          transition: { duration: 0.8 }
         };
       
       case 'slide':
@@ -46,37 +49,36 @@ export default function SliceTransition({
         return {
           initial: { opacity: 0, ...slideDirection },
           whileInView: { opacity: 1, x: 0, y: 0 },
-          transition: { duration: 0.8, ease: "easeOut" }
+          transition: { duration: 0.8 }
         };
       
       case 'scale':
         return {
           initial: { opacity: 0, scale: 0.9 },
           whileInView: { opacity: 1, scale: 1 },
-          transition: { duration: 0.8, ease: "easeOut" }
+          transition: { duration: 0.8 }
         };
       
       case 'blur':
         return {
           initial: { opacity: 0, filter: "blur(10px)" },
           whileInView: { opacity: 1, filter: "blur(0px)" },
-          transition: { duration: 1, ease: "easeOut" }
+          transition: { duration: 1 }
         };
       
       case 'parallax':
-        const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
         return {
           style: { y },
           initial: { opacity: 0 },
           whileInView: { opacity: 1 },
-          transition: { duration: 0.8, ease: "easeOut" }
+          transition: { duration: 0.8 }
         };
       
       default:
         return {
           initial: { opacity: 0, y: 30 },
           whileInView: { opacity: 1, y: 0 },
-          transition: { duration: 0.8, ease: "easeOut" }
+          transition: { duration: 0.8 }
         };
     }
   };

@@ -10,12 +10,10 @@ interface FooterProps {
 
 function Footer({ className = '' }: FooterProps) {
   const [isVisible, setIsVisible] = useState(true);
-  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      setScrollY(currentScrollY);
       
       // Hide footer when scrolling down past hero section (approximately 100vh)
       const heroHeight = window.innerHeight;

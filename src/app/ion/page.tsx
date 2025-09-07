@@ -1,6 +1,5 @@
 import {
   IONHero,
-  ScrollVideo,
   SliceTransition,
   DetailGrid,
   StorySection,

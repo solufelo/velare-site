@@ -32,7 +32,6 @@ function RotatingBike({ speed = 0.5 }: { speed?: number }) {
 export default function InteractiveBike({ className = '' }: InteractiveBikeProps) {
   const [isMouseInCenter, setIsMouseInCenter] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
-  const [isZooming, setIsZooming] = useState(false);
 
   const handleMouseMove = (event: React.MouseEvent) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -50,12 +49,9 @@ export default function InteractiveBike({ className = '' }: InteractiveBikeProps
     setIsMouseInCenter(inCanvasX && inCanvasY);
   };
 
-  const handleWheel = (event: React.WheelEvent) => {
+  const handleWheel = () => {
     if (isMouseInCenter) {
       setHasInteracted(true);
-      setIsZooming(true);
-      // Reset zooming state after a short delay
-      setTimeout(() => setIsZooming(false), 300);
     }
   };
 
