@@ -11,25 +11,8 @@ interface OutroProps {
 export default function Outro({ className = '' }: OutroProps) {
   return (
     <section className={`outro relative overflow-hidden ${className}`}>
-      {/* PatternCraft: Cosmic Aurora Background */}
+      {/* Simple Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900" />
-      <div className="absolute inset-0 opacity-20" style={{
-        background: `
-          radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
-          radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.3) 0%, transparent 50%),
-          radial-gradient(circle at 40% 60%, rgba(34, 197, 94, 0.2) 0%, transparent 50%),
-          linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%)
-        `
-      }} />
-      
-      {/* PatternCraft: Diagonal Grid Overlay */}
-      <div className="absolute inset-0 opacity-5" style={{
-        backgroundImage: `
-          linear-gradient(45deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-          linear-gradient(-45deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
-        `,
-        backgroundSize: '30px 30px'
-      }} />
       
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="text-center max-w-4xl mx-auto">

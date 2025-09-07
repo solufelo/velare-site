@@ -12,6 +12,8 @@ interface HeroVideoProps {
 export default function HeroVideo({ className = '' }: HeroVideoProps) {
   const [hasScrolled, setHasScrolled] = useState(false);
   const [isInteracting, setIsInteracting] = useState(false);
+  const [videoError, setVideoError] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,56 +43,21 @@ export default function HeroVideo({ className = '' }: HeroVideoProps) {
         loop 
         muted 
         playsInline 
-        className="absolute inset-0 w-full h-full object-cover" 
+        className="absolute inset-0 w-full h-full object-cover"
+        onLoadedData={() => setVideoLoaded(true)}
+        onError={() => setVideoError(true)}
+        style={{ display: videoError ? 'none' : 'block' }}
       />
+      {videoError && (
+        <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-gray-900 via-black to-gray-800" />
+      )}
       
-      {/* Enhanced Background Overlay with PatternCraft Aurora Pattern */}
+      {/* Simple Background Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-sky-500/20 via-transparent to-transparent" />
       
-      {/* PatternCraft: Aurora Dream Diagonal Flow */}
-      <div className="absolute inset-0 opacity-20" style={{
-        background: `
-          radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-          radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-          radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%),
-          linear-gradient(135deg, rgba(120, 119, 198, 0.1) 0%, rgba(255, 119, 198, 0.1) 100%)
-        `
-      }} />
-      
-      {/* Floating Particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-white/30 rounded-full"
-            initial={{ 
-              x: Math.random() * window.innerWidth, 
-              y: Math.random() * window.innerHeight,
-              opacity: 0 
-            }}
-            animate={{ 
-              y: [null, -100],
-              opacity: [0, 1, 0]
-            }}
-            transition={{ 
-              duration: Math.random() * 3 + 2,
-              repeat: Infinity,
-              delay: Math.random() * 2
-            }}
-          />
-        ))}
-      </div>
       
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-center text-white max-w-7xl mx-auto px-4 relative z-10">
-          {/* Decorative Elements */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 0.1, scale: 1 }}
-            transition={{ duration: 2, delay: 0.5 }}
-            className="absolute -top-20 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-to-r from-sky-500/20 to-blue-500/20 rounded-full blur-3xl"
-          />
           
           {/* Main Headline */}
           <motion.div
@@ -103,8 +70,6 @@ export default function HeroVideo({ className = '' }: HeroVideoProps) {
             transition={{ duration: 0.6, ease: "easeInOut" }}
             className="relative"
           >
-            {/* Glow Effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-sky-400/20 via-white/10 to-sky-400/20 blur-2xl scale-110" />
             
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 tracking-tight relative">
               <motion.span 
@@ -180,8 +145,6 @@ export default function HeroVideo({ className = '' }: HeroVideoProps) {
               whileTap={{ scale: 0.95 }}
               className="relative group"
             >
-              {/* Button Glow */}
-              <div className="absolute inset-0 bg-gradient-to-r from-sky-500 to-blue-600 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity duration-300" />
               
               <Button 
                 size="lg"

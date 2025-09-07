@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion } from 'framer-motion';
@@ -27,6 +27,8 @@ export default function ScrollVideo({
 }: ScrollVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [videoError, setVideoError] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
     if (!videoRef.current || !sectionRef.current) return;
@@ -77,15 +79,22 @@ export default function ScrollVideo({
 
     // Handle video loaded metadata
     const handleLoadedMetadata = () => {
+      setVideoLoaded(true);
       video.currentTime = 0;
       scrollTrigger.refresh();
     };
 
+    const handleVideoError = () => {
+      setVideoError(true);
+    };
+
     video.addEventListener('loadedmetadata', handleLoadedMetadata);
+    video.addEventListener('error', handleVideoError);
 
     // Cleanup
     return () => {
       video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      video.removeEventListener('error', handleVideoError);
       scrollTrigger.kill();
     };
   }, [videoSrc]);
@@ -104,7 +113,92 @@ export default function ScrollVideo({
         playsInline
         preload="metadata"
         className="absolute inset-0 w-full h-full object-cover"
+        style={{ display: videoError ? 'none' : 'block' }}
       />
+      {videoError && (
+        <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-gray-900 via-black to-gray-800" />
+      )}
+      
+      {/* Pattern Effects - Only for Revolutionary Design section */}
+      {sectionId === 'design-reveal' && (
+        <>
+          {/* Aurora Dream Pattern */}
+          <div className="absolute inset-0 opacity-30" style={{
+            background: `
+              radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.4) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.4) 0%, transparent 50%),
+              radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%),
+              linear-gradient(135deg, rgba(120, 119, 198, 0.2) 0%, rgba(255, 119, 198, 0.2) 100%)
+            `
+          }} />
+          
+          {/* Grid Pattern */}
+          <div className="absolute inset-0 opacity-15" style={{
+            backgroundImage: `
+              linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+              linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px'
+          }} />
+          
+          {/* Floating Particles */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(20)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-2 h-2 bg-white/40 rounded-full shadow-lg"
+                style={{
+                  boxShadow: '0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(120, 219, 255, 0.3)'
+                }}
+                initial={{ 
+                  x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200), 
+                  y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+                  opacity: 0 
+                }}
+                animate={{ 
+                  y: [null, -150],
+                  opacity: [0, 1, 0],
+                  scale: [0.5, 1, 0.5]
+                }}
+                transition={{ 
+                  duration: Math.random() * 5 + 4,
+                  repeat: Infinity,
+                  delay: Math.random() * 4
+                }}
+              />
+            ))}
+          </div>
+          
+          {/* Glow Effects */}
+          <div className="absolute inset-0 pointer-events-none">
+            <motion.div
+              className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.3, 0.5, 0.3]
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            <motion.div
+              className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-full blur-3xl"
+              animate={{
+                scale: [1.2, 1, 1.2],
+                opacity: [0.4, 0.2, 0.4]
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1
+              }}
+            />
+          </div>
+        </>
+      )}
       
       {/* Overlay content */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70 flex items-center justify-center">
@@ -139,12 +233,27 @@ export default function ScrollVideo({
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
-              className="mt-8 max-w-3xl mx-auto"
+              className="mt-8 max-w-4xl mx-auto"
             >
-              <p className="text-lg md:text-xl text-white/80 leading-relaxed">
+              <motion.p 
+                className="text-lg md:text-xl text-white/90 leading-relaxed font-light tracking-wide"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.6 }}
+                viewport={{ once: true }}
+              >
                 Every curve, every surface, every detail of Ion is meticulously crafted to deliver 
                 not just performance, but an experience that transcends the ordinary.
-              </p>
+              </motion.p>
+              
+              {/* Decorative line */}
+              <motion.div
+                className="mt-6 w-24 h-0.5 bg-gradient-to-r from-transparent via-sky-400 to-transparent mx-auto"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 1.5, delay: 0.8 }}
+                viewport={{ once: true }}
+              />
             </motion.div>
           )}
           

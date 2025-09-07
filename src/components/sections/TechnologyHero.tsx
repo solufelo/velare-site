@@ -40,24 +40,8 @@ export default function TechnologyHero({ className = '' }: TechnologyHeroProps) 
         className="absolute inset-0 w-full h-full object-cover" 
       />
       
-      {/* Enhanced Background Overlay */}
+      {/* Simple Background Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent" />
-      
-      {/* Tech Grid Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="grid grid-cols-12 grid-rows-8 h-full w-full">
-          {[...Array(96)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="border border-white/20"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.1 }}
-              transition={{ duration: 2, delay: i * 0.01 }}
-            />
-          ))}
-        </div>
-      </div>
       
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-center text-white max-w-7xl mx-auto px-4 relative z-10">

@@ -50,14 +50,6 @@ const gridItems = [
 export default function DetailGrid({ className = '' }: DetailGridProps) {
   return (
     <section className={`detail-grid relative overflow-hidden ${className}`}>
-      {/* PatternCraft: Subtle Grid Background */}
-      <div className="absolute inset-0 opacity-5" style={{
-        backgroundImage: `
-          linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
-        `,
-        backgroundSize: '40px 40px'
-      }} />
       
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="text-center mb-12">
