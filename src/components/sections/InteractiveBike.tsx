@@ -65,8 +65,28 @@ export default function InteractiveBike({ className = '' }: InteractiveBikeProps
       onMouseMove={handleMouseMove}
       onWheel={handleWheel}
     >
-      {/* Background */}
+      {/* Background with PatternCraft Circuit Board Pattern */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black" />
+      
+      {/* PatternCraft: Circuit Board Pattern */}
+      <div className="absolute inset-0 opacity-10" style={{
+        backgroundImage: `
+          linear-gradient(90deg, rgba(34, 197, 94, 0.1) 1px, transparent 1px),
+          linear-gradient(rgba(34, 197, 94, 0.1) 1px, transparent 1px),
+          linear-gradient(45deg, rgba(34, 197, 94, 0.05) 1px, transparent 1px),
+          linear-gradient(-45deg, rgba(34, 197, 94, 0.05) 1px, transparent 1px)
+        `,
+        backgroundSize: '50px 50px, 50px 50px, 25px 25px, 25px 25px',
+        backgroundPosition: '0 0, 0 0, 0 0, 0 0'
+      }} />
+      
+      {/* Additional Tech Glow */}
+      <div className="absolute inset-0 opacity-5" style={{
+        background: `
+          radial-gradient(circle at 30% 20%, rgba(34, 197, 94, 0.2) 0%, transparent 50%),
+          radial-gradient(circle at 70% 80%, rgba(34, 197, 94, 0.2) 0%, transparent 50%)
+        `
+      }} />
       
       {/* Canvas Outline Box - Only show if not interacted */}
       {!hasInteracted && (

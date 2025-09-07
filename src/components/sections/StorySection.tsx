@@ -56,9 +56,18 @@ const values = [
 export default function StorySection({ className = '' }: StorySectionProps) {
   return (
     <section className={`story-section relative overflow-hidden ${className}`}>
-      {/* Background Elements */}
+      {/* Background Elements with PatternCraft Radial Glow */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-sky-500/10 via-transparent to-transparent" />
+      
+      {/* PatternCraft: Purple Radial Glow */}
+      <div className="absolute inset-0 opacity-15" style={{
+        background: `
+          radial-gradient(circle at 25% 25%, rgba(147, 51, 234, 0.2) 0%, transparent 50%),
+          radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
+          radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.1) 0%, transparent 70%)
+        `
+      }} />
       
       <div className="container mx-auto px-4 py-20 relative z-10">
         {/* Hero Section */}
