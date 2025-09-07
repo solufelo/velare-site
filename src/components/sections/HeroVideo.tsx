@@ -145,6 +145,8 @@ export default function HeroVideo({ className = '' }: HeroVideoProps) {
               whileTap={{ scale: 0.95 }}
               className="relative group"
             >
+              {/* Button Glow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-sky-500 to-blue-600 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity duration-300" />
               
               <Button 
                 size="lg"

@@ -123,79 +123,53 @@ export default function ScrollVideo({
       {sectionId === 'design-reveal' && (
         <>
           {/* Aurora Dream Pattern */}
-          <div className="absolute inset-0 opacity-30" style={{
+          <div className="absolute inset-0 opacity-20" style={{
             background: `
-              radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.4) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.4) 0%, transparent 50%),
-              radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%),
-              linear-gradient(135deg, rgba(120, 119, 198, 0.2) 0%, rgba(255, 119, 198, 0.2) 100%)
+              radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+              radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%),
+              linear-gradient(135deg, rgba(120, 119, 198, 0.1) 0%, rgba(255, 119, 198, 0.1) 100%)
             `
           }} />
           
           {/* Grid Pattern */}
-          <div className="absolute inset-0 opacity-15" style={{
+          <div className="absolute inset-0 opacity-10" style={{
             backgroundImage: `
-              linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
-              linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px)
+              linear-gradient(90deg, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+              linear-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px)
             `,
             backgroundSize: '50px 50px'
           }} />
           
-          {/* Floating Particles */}
+          {/* Optimized Floating Particles */}
           <div className="absolute inset-0 overflow-hidden">
-            {[...Array(20)].map((_, i) => (
+            {[...Array(8)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute w-2 h-2 bg-white/40 rounded-full shadow-lg"
-                style={{
-                  boxShadow: '0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(120, 219, 255, 0.3)'
-                }}
+                className="absolute w-1 h-1 bg-white/30 rounded-full"
                 initial={{ 
-                  x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200), 
-                  y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+                  x: Math.random() * 1200, 
+                  y: Math.random() * 800,
                   opacity: 0 
                 }}
                 animate={{ 
-                  y: [null, -150],
-                  opacity: [0, 1, 0],
-                  scale: [0.5, 1, 0.5]
+                  y: [null, -100],
+                  opacity: [0, 1, 0]
                 }}
                 transition={{ 
-                  duration: Math.random() * 5 + 4,
+                  duration: 3 + Math.random() * 2,
                   repeat: Infinity,
-                  delay: Math.random() * 4
+                  delay: Math.random() * 2,
+                  ease: "linear"
                 }}
               />
             ))}
           </div>
           
-          {/* Glow Effects */}
+          {/* Static Glow Effects */}
           <div className="absolute inset-0 pointer-events-none">
-            <motion.div
-              className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-3xl"
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.5, 0.3]
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            <motion.div
-              className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-full blur-3xl"
-              animate={{
-                scale: [1.2, 1, 1.2],
-                opacity: [0.4, 0.2, 0.4]
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1
-              }}
-            />
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-500/15 to-pink-500/15 rounded-full blur-3xl" />
+            <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-blue-500/15 to-cyan-500/15 rounded-full blur-3xl" />
           </div>
         </>
       )}
