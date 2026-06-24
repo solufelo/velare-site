@@ -1,3 +1,5 @@
+LIVE DEMO: velare-site.netlify.app
+
 # Velare - Creative 3D Studio
 
 A modern, immersive website built with Next.js, Three.js, and Framer Motion for showcasing creative 3D experiences and interactive content.
